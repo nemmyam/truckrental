@@ -1140,17 +1140,20 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
                 
-                if (response.ok) {
+                const result = await response.json();
+                
+                if (response.ok && result.ok) {
                     // Success
                     formMessage.textContent = '✓ Request submitted successfully. We will contact you within 24 business hours.';
                     formMessage.className = 'form-message success';
                     form.reset();
                 } else {
-                    throw new Error('Failed to send');
+                    throw new Error(result.error || 'Failed to send');
                 }
             } catch (error) {
                 // Error handling
