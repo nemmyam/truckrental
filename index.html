@@ -1135,8 +1135,8 @@
             };
             
             try {
-                // Using Formspree - Replace YOUR_FORM_ID with actual ID
-                const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                // Using Formspree with your actual form ID
+                const response = await fetch('https://formspree.io/f/mqayaqoj', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1153,10 +1153,10 @@
                     throw new Error('Failed to send');
                 }
             } catch (error) {
-                // For demo purposes, show success
-                formMessage.textContent = '✓ Thank you for your request. We will contact you at ' + formData.get('email') + ' within 24 business hours.';
-                formMessage.className = 'form-message success';
-                form.reset();
+                // Error handling
+                console.error('Form submission error:', error);
+                formMessage.textContent = '❌ There was an error submitting the form. Please try again or email operations@truckrentals.us directly.';
+                formMessage.className = 'form-message error';
             } finally {
                 // Reset button state
                 submitBtn.disabled = false;
